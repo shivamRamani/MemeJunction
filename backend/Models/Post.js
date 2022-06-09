@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
     name: String,
-    text: String,
+    caption: String,
     image: {
         type: String,
-        required: true,
+        // required: true,
     },
     likes: {
         type:Number,
