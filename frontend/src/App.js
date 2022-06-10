@@ -5,21 +5,19 @@ import logo from './images/MemeLogo.png'
 import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
 import useStyles from "./styles"
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import {getPosts} from './actions/posts'
 
-// let posts = store.posts;
 
 
 function App() {
   const classes=useStyles();
   const dispatch=useDispatch();
-
+  const currentId= useSelector(state=>state.currentId)
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch])
+  }, [currentId,dispatch])
   
-
 
   return (
     <Container maxWidth='lg' className="App">
@@ -33,7 +31,7 @@ function App() {
         <Container>
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
             <Grid item xs={12} sm={7}>
-              <Posts />
+              <Posts currId={currentId} />
             </Grid>
             <Grid item xs={12} sm={4}>
               <Form />

@@ -7,11 +7,19 @@ import EditIcon from '@mui/icons-material/Edit';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { useDispatch ,useSelector} from 'react-redux';
+import {selectCurrId} from '../../../actions/posts'
 
 function Post(props) {
-  console.log(props);
-  const {_id,name,caption,image,likes} = props.post;
+  // console.log(props);
+  const {_id,name,caption,selectedFile,likes} = props.post;
+  const dispatch=useDispatch();
+  // const currentId = useSelector((state=> state.currentId));
+
+  const selectId = ()=>{
+    dispatch(selectCurrId(_id));
+    
+  }
 
   return (
     <>
@@ -20,7 +28,7 @@ function Post(props) {
         component="img"
         alt="MemeImage"
         height="140"
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_pMSP8fgfWLtqkSZbDw_XNEMpbrwqQ7n9jw&usqp=CAU"
+        image={selectedFile}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -32,9 +40,16 @@ function Post(props) {
       </CardContent>
       <CardActions>
         <Button size="small">
-          <ThumbUpIcon fontSize='default' /> 
+          <ThumbUpIcon fontSize='small' >' '</ThumbUpIcon>
+          Like
         </Button>
-        <Button size="small">Edit</Button>
+        <Button size="small" onClick={selectId}>
+          <EditIcon fontSize='small'>' '</EditIcon>
+          Edit
+          </Button>
+        <Button size="small">
+          <DeleteIcon fontSize='small'>' '</DeleteIcon>
+          Delete</Button>
       </CardActions>
     </Card>
     </>

@@ -2,38 +2,51 @@ import { TextField, Button, Paper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import { store } from "../../app/store";
-import {useDispatch} from "react-redux"
-import {createPost} from "../../actions/posts"
+import {useDispatch,useSelector } from "react-redux"
+import {createPost,updateCurrPost,selectCurrId} from "../../actions/posts"
 // import { fetchPosts} from "../../api";
 
 function Form() {
+    let currentId =useSelector(state=>state.currentId);
+    const posts=useSelector(state=>state.posts);
+    const postToBeUpdated = currentId ? posts.find((p)=>p._id===currentId): null;
     const [postData, setPostData] = useState({
         name: "",
         caption: "",
-        seletedFile: "",
+        selectedFile: "",
     });
     const dispatch=useDispatch();
+
+    useEffect(()=>{
+        if(postToBeUpdated) setPostData(postToBeUpdated)
+    },[postToBeUpdated])
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(createPost(postData));
+        if(currentId){
+            dispatch(updateCurrPost(currentId,postData));
+        }
+        else{
+            dispatch(createPost(postData));
+        }
+        clearForm();
     };
-
-    const clearForm = (event)=>{
-        event.preventDefault();
-        // useEffect(()=>{
-            // dispatch(fetchPosts());
-        // },[dispatch])
+    
+    const clearForm = ()=>{
+        // event.preventDefault();
+        dispatch(selectCurrId(null));
         setPostData({
             name: "",
             caption: "",
-            seletedFile: "",
+            selectedFile: "",
         })
     }
 
     return (
         <Paper>
             <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                <Typography variant="h4">Creat a New Meme</Typography>
+                <Typography variant="h4">{!currentId? 'Creat a New Meme':'Edit Meme'}</Typography>
                 <TextField
                     variant="outlined"
                     label="Name"
@@ -62,9 +75,9 @@ function Form() {
                     <FileBase
                         type="file"
                         multiple={false}
-                        name = {postData.seletedFile}
+                        name = {postData.selectedFile}
                         onDone={({ base64 }) =>
-                            setPostData({ ...postData, seletedFile: base64 })
+                            setPostData({ ...postData, selectedFile: base64 })
                         }
                     />
                 </div>

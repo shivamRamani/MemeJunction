@@ -16,7 +16,7 @@ export const getPosts= async (req,res)=>{
 }
 
 export const postMeme = async (req,res)=>{
-    console.log(req.body);
+    console.log("this mre post data" + req.body);
 
     let post = req.body;
     let newPost = new Post(post);
@@ -31,20 +31,19 @@ export const postMeme = async (req,res)=>{
 }
 
 export const updatePost = async (req,res)=>{
+    console.log('helloldknmgksdjgklsdfjfklgjsdjgjsdlkgjsdkljgklsdfjfgkl');
     const {id : _id} =req.params;
     const post = req.body;
-    console.log(req.body,req.params);
-    // const updatedPost= await Post.findByIdAndUpdate(_id,post,{new:true});
-    // console.log(updatedPost);
-    // return res.json(req.params.value);
+    // console.log(req.body,req.params);
+
     try {
         console.log('oldPost '+ await Post.findById(_id));
-        const updatedPost= await Post.findByIdAndUpdate(_id,post,{new:true});
-        console.log(updatedPost);
+        const updatedPost= await Post.findByIdAndUpdate(_id,{...post,_id},{new:true});
         if(!updatePost){
             res.status(404).massage('No Post Found');
         }
         else {
+            console.log(updatedPost);
             res.status(200).json(updatedPost);
         }
     } catch (error) {

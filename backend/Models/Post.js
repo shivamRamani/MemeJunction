@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 const postSchema = new mongoose.Schema({
     name: String,
     caption: String,
-    image: {
+    selectedFile: {
         type: String,
-        // required: true,
+        required: true,
     },
     likes: {
         type:Number,

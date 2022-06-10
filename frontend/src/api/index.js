@@ -12,33 +12,14 @@ export const fetchPosts = ()=>{
 };
 
 export const createPost = (postData)=>{
+    console.log("response data is : " + postData);
     const response = axios.post(url,postData);
-    // console.log("response data is : " + response);
     return response;
 };
 
-// export const fetchPosts = createAsyncThunk ('post/fetchPosts',async () => {
-//     console.log("fetch happend");
-
-//     try {
-//         const response = await axios.get(POSTS_URL); 
-//         console.log(response.data);
-
-//         // return response.data
-//         return response.data;
-
-//     } catch (error) {
-//         console.log(error.massage);
-//         return error.massage
-//     }
-// })
-
-// export const createPost = createAsyncThunk ('post/createPost',async (postData) => {
-//     console.log("post happend");
-//     try {
-//         const response = await axios.post(url, postData); 
-//         return response.data
-//     } catch (error) {
-//         return error.massage
-//     }
-// })
+export const updatePost =(id,postData) =>{
+    console.log('This is update post data'+ JSON.stringify(postData))
+    const response = axios.patch(`${url}/${id}`,postData);
+    return response;
+    // return {};
+}
