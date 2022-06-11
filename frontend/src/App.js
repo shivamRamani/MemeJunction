@@ -1,48 +1,26 @@
 import React ,{ useEffect} from "react";
 
 import {Container ,AppBar, Typography, Grow,Grid} from '@material-ui/core'
-import logo from './images/MemeLogo.png'
-import Form from "./components/Form/Form";
-import Posts from "./components/Posts/Posts";
 import useStyles from "./styles"
 import {useDispatch,useSelector} from 'react-redux'
 import {getPosts} from './actions/posts'
-
-
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home"
+import { BrowserRouter , Routes, Route } from "react-router-dom";
+import Auth from "./components/Auth/Auth";
 
 function App() {
-  const classes=useStyles();
-  const dispatch=useDispatch();
-  const currentId= useSelector(state=>state.currentId)
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId,dispatch])
   
-
   return (
-    <Container maxWidth='lg' className="App">
-      <AppBar className={classes.appBar} color="inherit" position="static">
-        <Typography className={classes.title} variant="h2" align="center" >
-            Meme Junction
-        </Typography>
-        <img className={classes.logo} src={logo} alt="appLogo" height='60' />
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
-            <Grid item xs={12} sm={7}>
-              <Posts currId={currentId} />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form />
-            </Grid>
-          </Grid>
+    <BrowserRouter>
+        <Container maxWidth='lg' className="App">
+          <Navbar />
+            <Routes >
+              <Route exact path='/' element={<Home />} />
+              <Route exact path='/auth' element={<Auth />} />
+            </Routes>
         </Container>
-
-
-      </Grow>
-
-    </Container>
+    </BrowserRouter>
   );
 }
 

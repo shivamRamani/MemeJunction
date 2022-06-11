@@ -7,7 +7,6 @@ const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
 export const fetchPosts = ()=>{
     const response = axios.get(url);
     
-    // console.log("response data is : " + response);
     return response;
 };
 
@@ -21,5 +20,15 @@ export const updatePost =(id,postData) =>{
     console.log('This is update post data'+ JSON.stringify(postData))
     const response = axios.patch(`${url}/${id}`,postData);
     return response;
-    // return {};
+}
+
+export const deletePost = (id) =>{
+    console.log('This is update post data'+ JSON.stringify(id))
+    const response = axios.delete(`${url}/${id}`);
+    return response;
+}
+
+export const likePost = (id) =>{
+    const response = axios.patch(`${url}/${id}/likePost`,id);
+    return response;
 }
