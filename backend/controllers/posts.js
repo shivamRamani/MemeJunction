@@ -71,8 +71,19 @@ export const likePost = async (req,res) =>{
     const {id: _id} = req.params;
     // console.log(_id);
     try {
+        if(!req.userId) return res.json({massage: "Unauthenticated"});
         const oldPost = await Post.findById(_id);
-        const updatedPost = await Post.findByIdAndUpdate(_id,{likes: oldPost.likes+1},{new: true});
+
+        const index =oldPost.likes.findIndex((id) => id===string(req.userId))
+
+        if(index===-1){
+            oldPost.likes.push(req.userId);
+        }
+        else{
+            oldPost.likes.splice(index,1);
+        }
+
+        const updatedPost = await Post.findByIdAndUpdate(_id,oldPost,{new: true});
         res.status(200).json(updatedPost);
         
     } catch (error) {

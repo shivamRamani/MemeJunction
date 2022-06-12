@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 
 
 export const signup = async (req,res) =>{
-    // console.log(req.body);
+    console.log(req.body);
     const {email,password,confirmPassword,firstName,lastName} =req.body; 
 
     try{

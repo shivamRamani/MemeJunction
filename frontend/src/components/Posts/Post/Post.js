@@ -61,7 +61,7 @@ function Post(props) {
                 <CardActions>
                     <Button size="small" onClick={onLikeClick}>
                         <ThumbUpIcon fontSize="small">' '</ThumbUpIcon>
-                        {likes ? `${likes} ${likes===1? 'Like' : 'Likes'}` : ' '}
+                        {likes.length ? `${likes.length} ${likes.length===1? 'Like' : 'Likes'}` : ' '}
                         {}
                     </Button>
                     <Button size="small" onClick={selectId}>

@@ -20,7 +20,7 @@ import {getPosts } from '../../actions/posts'
             <Grid item xs={12} sm={12}>
               <Form />
             </Grid>
-            <Grid   container xs={12} sm={12}>
+            <Grid item xs={12} sm={12}>
               <Posts />
             </Grid>
           </Grid>
