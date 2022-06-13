@@ -1,14 +1,21 @@
 import axios from "axios";
-import thunk from "redux-thunk";
 
 const url = "http://localhost:5000";
 
 const API = axios.create({baseURL: url})
 
+API.interceptors.request.use((req)=>{
+    const profile=JSON.parse(localStorage.getItem('profile'));
+    if(profile){
+        // console.log('tokern ' + JSON.parse(localStorage.getItem('profile')).token);
+        req.headers.authorization= `Bearer ${(profile.token)}`;
+    }
+    return req;
+})
+
 
 export const fetchPosts = ()=>{
     const response = API.get('/posts');
-    
     return response;
 };
 

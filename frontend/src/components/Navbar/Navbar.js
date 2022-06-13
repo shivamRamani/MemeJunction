@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link,useNavigate,useLocation} from "react-router-dom";
 import {AppBar, Toolbar, Typography,Button,Avatar} from '@material-ui/core'
 import logo from '../../images/MemeLogo.png'
+import { getPosts } from "../../actions/posts";
 import { color } from "@mui/system";
 
 function Navbar(){
@@ -11,18 +12,22 @@ function Navbar(){
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
     const location=useLocation();
     const dispatch=useDispatch();
+    const navigate= useNavigate();
     useEffect(()=>{
-        if(user){
-            const token = user.token;
+        // if(user){
+            const token = user && user.token;
+            // console.log(localStorage.getItem('profile'));
             setUser(JSON.parse(localStorage.getItem('profile')));
-        }
+        // }
     },[location])
 
     const logout=()=>{
         dispatch({type: 'LOGOUT'});
+        dispatch(getPosts());
+        navigate('/')
         setUser(null);
     }
-
+    // console.log('USer' + JSON.stringify(user));
     return (
         <>
         <AppBar className={classes.appBar} color="inherit" position="static">
@@ -34,10 +39,10 @@ function Navbar(){
                 {
                     user 
                     ?
-                    (
+                    (   
                         <div>
                             <Avatar />
-                            <Typography varient='h6'>{user.name}</Typography>
+                            <Typography varient='h6'>{user.result.name}</Typography>
                             <Button variant='contained' color='secondary' onClick={logout}>Logout</Button>
                         </div>
 

@@ -15,6 +15,9 @@ function Form() {
         caption: "",
         selectedFile: "",
     });
+
+    const user = JSON.parse(localStorage.getItem('profile'));
+
     const dispatch=useDispatch();
 
     useEffect(()=>{
@@ -42,6 +45,19 @@ function Form() {
             selectedFile: "",
         })
     }
+
+    if(!user){
+
+        return (
+            <Paper>
+                <Typography varient='h4' align='center'>
+                    Please loging to creat and like posts
+                </Typography>
+            </Paper>
+        )
+
+    }
+    
 
     return (
         <Paper>

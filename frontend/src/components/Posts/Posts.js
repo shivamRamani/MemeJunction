@@ -3,10 +3,10 @@ import Post from "./Post/Post";
 import { useSelector,useEffect } from "react-redux";
 import { Grid, CircularProgress } from "@material-ui/core";
 
-function Posts() {
+function Posts(props) {
     const posts = useSelector((state) => state.posts);
     // posts.reverse();
-    console.log(posts);
+    // console.log(posts);
     return (
         <>
             {
@@ -16,7 +16,7 @@ function Posts() {
               :(
               posts.map((post) => (
                 <Grid item key={post._id} xs={12} sm={12}>
-                  <Post post={post} />
+                  <Post post={post} user={props.user} />
                 </Grid>
               ))
               )

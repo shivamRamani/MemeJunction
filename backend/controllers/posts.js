@@ -17,9 +17,9 @@ export const getPosts= async (req,res)=>{
 
 export const postMeme = async (req,res)=>{
     console.log("this mre post data" + JSON.stringify(req.body));
-
+    const creator = req.userId;
     let post = req.body;
-    let newPost = new Post(post);
+    let newPost = new Post({...post,creatorId: creator});
 
     try {
         await newPost.save().then(()=>console.log("added to db"));
@@ -69,20 +69,21 @@ export const deletePost =async(req,res)=>{
 
 export const likePost = async (req,res) =>{
     const {id: _id} = req.params;
-    // console.log(_id);
+    console.log('id is ' +_id);
     try {
         if(!req.userId) return res.json({massage: "Unauthenticated"});
         const oldPost = await Post.findById(_id);
-
-        const index =oldPost.likes.findIndex((id) => id===string(req.userId))
-
+        // const userid= req.userId;
+        // console.log(userId);
+        console.log('old '+ oldPost.likes.indexOf((`${req.userId}`)));
+        const index =oldPost.likes.indexOf((`${req.userId}`));
+        console.log('ukghtftycty')
         if(index===-1){
             oldPost.likes.push(req.userId);
         }
         else{
             oldPost.likes.splice(index,1);
         }
-
         const updatedPost = await Post.findByIdAndUpdate(_id,oldPost,{new: true});
         res.status(200).json(updatedPost);
         

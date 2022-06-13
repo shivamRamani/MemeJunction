@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 import {
     Card,
@@ -25,22 +25,34 @@ function Post(props) {
     // console.log(props);
     // const [likes,setLikes] = useState(props.post.likes);
 
-    let { _id, name, caption, selectedFile,likes } = props.post;
-    console.log(likes);
+    let { _id, name, caption, selectedFile,likes,creatorId} = props.post;
     const dispatch = useDispatch();
-    // const currentId = useSelector((state=> state.currentId));
+    const user = JSON.parse(localStorage.getItem('profile'));
+    // const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
+
+    // useEffect(() => {
+    //     setUser(JSON.parse(localStorage.getItem('profile')));
+    // }, [JSON.parse(localStorage.getItem('profile'))]);
+    
+
+    // const [authorized,setAuth] = useState((user && user.result._id==creatorId));
 
     const selectId = () => {
         dispatch(selectCurrId(_id));
     };
     const onLikeClick = () => {
         dispatch(likePost(_id));
-        // console.log(likes);
-        // setLikes(
-        //     // likes = likes + 1,
-        // );
+ 
     };
+    if(user){
+        console.log(user.result._id);
+        console.log(creatorId);
 
+    }
+    
+    let authorized = (user && user.result._id==creatorId);
+    console.log(authorized);
+    
     return (
         <>
             <Card sx={{ maxWidth: 345 }} >
@@ -64,17 +76,28 @@ function Post(props) {
                         {likes.length ? `${likes.length} ${likes.length===1? 'Like' : 'Likes'}` : ' '}
                         {}
                     </Button>
-                    <Button size="small" onClick={selectId}>
-                        <EditIcon fontSize="small">' '</EditIcon>
-                        Edit
-                    </Button>
-                    <Button
-                        size="small"
-                        onClick={() => dispatch(deletePost(_id))}
-                    >
-                        <DeleteIcon fontSize="small">' '</DeleteIcon>
-                        Delete
-                    </Button>
+                    {
+                        authorized ? (
+                            <>
+                                <Button size="small" onClick={selectId}>
+                                    <EditIcon fontSize="small">' '</EditIcon>
+                                     Edit
+                                </Button>
+                                <Button
+                                    size="small"
+                                    onClick={() => dispatch(deletePost(_id))}
+                                        >
+                                    <DeleteIcon fontSize="small">' '</DeleteIcon>
+                                     Delete
+                                </Button>
+                            </>
+                        )
+                        : (
+                            <>
+                            </>
+                        )
+                    }
+                    
                 </CardActions>
             </Card>
         </>

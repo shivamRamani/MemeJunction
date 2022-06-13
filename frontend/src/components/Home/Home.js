@@ -9,6 +9,7 @@ import {getPosts } from '../../actions/posts'
     // const classes=useStyles();
     const dispatch=useDispatch();
     const currentId= useSelector(state=>state.currentId)
+    const user = localStorage.getItem('profile');
     useEffect(() => {
         dispatch(getPosts());
      }, [dispatch])
@@ -21,7 +22,7 @@ import {getPosts } from '../../actions/posts'
               <Form />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <Posts />
+              <Posts user={user}/>
             </Grid>
           </Grid>
         </Container>
