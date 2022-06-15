@@ -18,10 +18,10 @@ import {getPosts } from '../../actions/posts'
         <Grow in>
         <Container >
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} md={4}>
               <Form />
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} md={8}>
               <Posts user={user}/>
             </Grid>
           </Grid>

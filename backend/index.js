@@ -18,7 +18,8 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
     });
-
+    app.use(express.json({limit: '50mb'}));
+    app.use(express.urlencoded({limit: '50mb'}));
 
 //intializing middleware to get request body data
 app.use(express.json({extended: false}));

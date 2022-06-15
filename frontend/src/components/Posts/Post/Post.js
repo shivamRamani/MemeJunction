@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-
+import useStyles from './styles'
 import {
     Card,
     CardActions,
@@ -22,8 +22,8 @@ import {
 } from "../../../actions/posts";
 
 function Post(props) {
-    // console.log(props);
-    // const [likes,setLikes] = useState(props.post.likes);
+
+    const classes=useStyles();
 
     let { _id, name, caption, selectedFile,likes,creatorId} = props.post;
     const dispatch = useDispatch();
@@ -55,14 +55,8 @@ function Post(props) {
     
     return (
         <>
-            <Card sx={{ maxWidth: 345 }} >
-                <CardMedia
-                    component="img"
-                    alt="MemeImage"
-                    height="140"
-                    image={selectedFile}
-                />
-                <CardContent>
+            <Card className={classes.card}>
+                <CardContent className={classes.content}>
                     <Typography gutterBottom variant="h5" component="div">
                         {name}
                     </Typography>
@@ -70,7 +64,15 @@ function Post(props) {
                         {caption}
                     </Typography>
                 </CardContent>
-                <CardActions>
+                <CardMedia
+                    className={classes.image}
+                    component="img"
+                    alt="MemeImage"
+                    // height="250 "
+                    image={selectedFile}
+                />
+                
+                <CardActions className={classes.actions}>
                     <Button size="small" onClick={onLikeClick}>
                         <ThumbUpIcon fontSize="small">' '</ThumbUpIcon>
                         {likes.length ? `${likes.length} ${likes.length===1? 'Like' : 'Likes'}` : ' '}

@@ -1,12 +1,15 @@
-import { TextField, Button, Paper, Typography } from "@material-ui/core";
+import { TextField, Button, Paper, Typography, ButtonGroup } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import { store } from "../../app/store";
 import {useDispatch,useSelector } from "react-redux"
 import {createPost,updateCurrPost,selectCurrId} from "../../actions/posts"
+import useStyles from './styles'
 // import { fetchPosts} from "../../api";
 
+
 function Form() {
+    const classes=useStyles();
     let currentId =useSelector(state=>state.currentId);
     const posts=useSelector(state=>state.posts);
     const postToBeUpdated = currentId ? posts.find((p)=>p._id===currentId): null;
@@ -49,8 +52,8 @@ function Form() {
     if(!user){
 
         return (
-            <Paper>
-                <Typography varient='h4' align='center'>
+            <Paper className={classes.form}>
+                <Typography varient='h3' align='center'>
                     Please loging to creat and like posts
                 </Typography>
             </Paper>
@@ -60,11 +63,12 @@ function Form() {
     
 
     return (
-        <Paper>
-            <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                <Typography variant="h4">{!currentId? 'Creat a New Meme':'Edit Meme'}</Typography>
+        <Paper color="#f50057">
+            <form className={classes.form} autoComplete="off" noValidate onSubmit={handleSubmit}>
+                <Typography  align="center"  variant="h4">{!currentId? 'Creat Meme':'Edit Meme'}</Typography>
                 <TextField
-                    variant="outlined"
+                    className={classes.textField}
+                    variant="filled"
                     label="Name"
                     fullWidth
                     value={postData.name}
@@ -76,7 +80,8 @@ function Form() {
                     }
                 ></TextField>
                 <TextField
-                    variant="outlined"
+                    className={classes.textField}
+                    variant="filled"
                     label="Caption"
                     fullWidth
                     value={postData.caption}
@@ -87,18 +92,26 @@ function Form() {
                         })
                     }
                 ></TextField>
-                <div>
+                <div >
                     <FileBase
+                        className={classes.filebase}
                         type="file"
+                        name='file'
+                        id='file'
                         multiple={false}
-                        name = {postData.selectedFile}
+                        // name = {postData.selectedFile}
                         onDone={({ base64 }) =>
                             setPostData({ ...postData, selectedFile: base64 })
                         }
                     />
+                    {/* <input type="file" name="file" id="file" onSubmit={()=>setPostData({ ...postData, selectedFile: base64 })}/>
+                    <label for="file">Choose a file</label> */}
                 </div>
-                <Button varient="constined" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                <Button onClick={clearForm} varient="constined" color="secondary" size="large" fullWidth>Clear</Button>
+                <ButtonGroup className={classes.buttons} fullWidth>
+                <Button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                <Button onClick={clearForm} variant="contained" color="secondary" size="large" fullWidth>Clear</Button>
+
+                </ButtonGroup>
             </form>
         </Paper>
     );

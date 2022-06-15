@@ -11,6 +11,11 @@ import Auth from "./components/Auth/Auth";
 
 function App() {
   
+  const nav={
+    position:'sticky',
+    top: '0'
+  }
+
   return (
     <BrowserRouter>
         <Container maxWidth='lg' className="App">

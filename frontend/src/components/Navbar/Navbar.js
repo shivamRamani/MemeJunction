@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import useStyles from "../../styles"
+import useStyles from "./styles"
 import { useDispatch } from "react-redux";
 import { Link,useNavigate,useLocation} from "react-router-dom";
 import {AppBar, Toolbar, Typography,Button,Avatar} from '@material-ui/core'
@@ -30,26 +30,26 @@ function Navbar(){
     // console.log('USer' + JSON.stringify(user));
     return (
         <>
-        <AppBar className={classes.appBar} color="inherit" position="static">
-            <div>
+        <AppBar  className={classes.appBar} color="inherit">
+            <div >
                 <img className={classes.logo} src={logo} alt="appLogo" height='60' />
-                <Typography className={classes.title} component={Link} to='/' variant="h2" align="center" > Meme Junction</Typography>
+                <Typography className={classes.title} component={Link} to='/' variant="h2" align="center" >MEME JUNCTION</Typography>
             </div>
-            <Toolbar>
+            <Toolbar className={classes.toolbar}>
                 {
                     user 
                     ?
                     (   
-                        <div>
-                            <Avatar />
-                            <Typography varient='h6'>{user.result.name}</Typography>
-                            <Button variant='contained' color='secondary' onClick={logout}>Logout</Button>
+                        <div className={classes.user}>
+                            <Avatar className={classes.avatar}/>
+                            <Typography className={classes.name} varient='h5'>{user.result.name}</Typography>
+                            <Button className={classes.button} size="small" variant='contained' color='secondary' onClick={logout}>Logout</Button>
                         </div>
 
                     )
                     :
                     (
-                        <Button component={Link} to='/auth' variant="contained" color='primary'>Sign In</Button>
+                        <Button size='lg' className={classes.signin} component={Link} to='/auth' variant="contained" color='primary'>Sign In</Button>
                     )
                 }
             </Toolbar>

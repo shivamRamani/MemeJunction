@@ -16,7 +16,7 @@ export const getPosts= async (req,res)=>{
 }
 
 export const postMeme = async (req,res)=>{
-    console.log("this mre post data" + JSON.stringify(req.body));
+    // console.log("this mre post data" + JSON.stringify(req.body));
     const creator = req.userId;
     let post = req.body;
     let newPost = new Post({...post,creatorId: creator});
@@ -75,9 +75,9 @@ export const likePost = async (req,res) =>{
         const oldPost = await Post.findById(_id);
         // const userid= req.userId;
         // console.log(userId);
-        console.log('old '+ oldPost.likes.indexOf((`${req.userId}`)));
+        // console.log('old '+ oldPost.likes.indexOf((`${req.userId}`)));
         const index =oldPost.likes.indexOf((`${req.userId}`));
-        console.log('ukghtftycty')
+        // console.log('ukghtftycty')
         if(index===-1){
             oldPost.likes.push(req.userId);
         }
