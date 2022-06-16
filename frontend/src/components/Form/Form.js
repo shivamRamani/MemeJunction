@@ -54,7 +54,7 @@ function Form() {
         return (
             <Paper className={classes.form}>
                 <Typography varient='h3' align='center'>
-                    Please loging to creat and like posts
+                    Please loging to create and like posts
                 </Typography>
             </Paper>
         )
@@ -108,8 +108,8 @@ function Form() {
                     <label for="file">Choose a file</label> */}
                 </div>
                 <ButtonGroup className={classes.buttons} fullWidth>
-                <Button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                <Button onClick={clearForm} variant="contained" color="secondary" size="large" fullWidth>Clear</Button>
+                    <Button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                    <Button onClick={clearForm} variant="contained" color="secondary" size="large" fullWidth>Clear</Button>
 
                 </ButtonGroup>
             </form>

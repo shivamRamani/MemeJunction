@@ -49,7 +49,7 @@ function Navbar(){
                     )
                     :
                     (
-                        <Button size='lg' className={classes.signin} component={Link} to='/auth' variant="contained" color='primary'>Sign In</Button>
+                        <Button size='large' className={classes.signin} component={Link} to='/auth' variant="contained" color='primary'>Sign In</Button>
                     )
                 }
             </Toolbar>
