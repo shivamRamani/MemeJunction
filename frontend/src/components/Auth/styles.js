@@ -7,7 +7,7 @@ export default makeStyles(()=>{
         
         main: {
 
-            // display: 'flex',
+            // height: '40vh'  
 
         },
         paper: {
@@ -17,34 +17,55 @@ export default makeStyles(()=>{
             padding: '20px',
             borderRadius: '15px',
             border: '3px solid black',
-            boxShadow: '10px 10px 0px -3px  black',
+            boxShadow: '8px 8px 0px -3px  black',
             backgroundColor: '#fac185',
         },
         textfield: {
-            margin: '3.5%',
-            marginBottom: '0px',
+            height: '80%',
+            margin: '3%',
+            width: 'calc(100% - 2px)',
+            // marginBottom: '0px',
+            fontSize: 'medium',
             color: 'black',
             justifyContent: 'center',
             backgroundColor: 'white',
             boxShadow: '3px 3px black',
             border: '3px solid black',
-            borderRadius: '6px 0px 0px 6px'
+            borderRadius: '6px 0px 0px 6px',
+            "@media (max-width: 572px)": {
+                margin: '0px',
+                borderRadius: '4px',
+                height: '120%',
+            },
+            
+            
         },
         sign_button: {
             width: '80%',
             margin: '0px 10%',
             boxShadow: '3px 3px black',
             border: '3px solid black',
-            borderRadius: '6px'
+            borderRadius: '6px',
+            "@media (max-width: 572px)": {
+                fontSize: 'small'
+            }
         },
         toggle: {
             width: '60%',
             margin: '4% 20%',
             boxShadow: '3px 3px black',
             border: '2px solid black',
-            borderRadius: '6px'
-        }
+            borderRadius: '6px',
+            // display: 'ruby',
+            fontSize: '1em',
+            overflow: 'hidden',
+            maxHeight: '50px',
+            
+            "@media (max-width: 572px)": {
+                fontSize: 'xx-small'
+            }
 
+        }
 
         
 

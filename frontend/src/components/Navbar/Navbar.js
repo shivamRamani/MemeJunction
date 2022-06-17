@@ -32,7 +32,7 @@ function Navbar(){
         <>
         <AppBar  className={classes.appBar} color="inherit">
             <div >
-                <img className={classes.logo} src={logo} alt="appLogo" height='60' />
+                <img className={classes.logo} src={logo} alt="appLogo" />
                 <Typography className={classes.title} component={Link} to='/' variant="h2" align="center" >MEME JUNCTION</Typography>
             </div>
             <Toolbar className={classes.toolbar}>
@@ -43,13 +43,13 @@ function Navbar(){
                         <div className={classes.user}>
                             <Avatar className={classes.avatar}/>
                             <Typography className={classes.name} varient='h5'>{user.result.name}</Typography>
-                            <Button className={classes.button} size="small" variant='contained' color='secondary' onClick={logout}>Logout</Button>
+                            <Button className={classes.button} size="small" variant='contained' color='secondary' onClick={logout}>Log out</Button>
                         </div>
 
                     )
                     :
                     (
-                        <Button size='large' className={classes.signin} component={Link} to='/auth' variant="contained" color='primary'>Sign In</Button>
+                        <Button size='large' className={classes.signin} component={Link} to='/auth' variant="contained" color='primary' >Sign In</Button>
                     )
                 }
             </Toolbar>

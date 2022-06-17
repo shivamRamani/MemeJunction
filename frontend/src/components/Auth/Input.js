@@ -6,14 +6,14 @@ const Input = ({name,type,label,half ,handleChange,isPassward}) => {
   const classes= useStyles();
   return (
     <>
-        <Grid item xs={12} sm= { half ? 6:12}>
-            <TextField
+        <Grid item xs={12} sm= {12}>
+            <input 
                 className={classes.textfield}
                 variant='filled' 
+                size='small'
                 name={name}
-                label={label}
-                fullWidth
-                // required
+                placeholder={label}
+                required
                 type={type}
                 onChange={handleChange}
             />

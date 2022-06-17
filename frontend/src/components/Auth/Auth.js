@@ -41,7 +41,7 @@ const Auth = () => {
                 <Paper className={classes.paper} >
                     <Avatar >
                     </Avatar >
-                    <Typography align="center" variant="h5">{isSignin ? `Sign In` :`Sign Up`}</Typography>
+                    <Typography align="center" variant="h6">{isSignin ? `Sign In` :`Sign Up`}</Typography>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={5}>
                             {
@@ -67,8 +67,8 @@ const Auth = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <Button type='submit' align='center' fullWidth variant='contained' color="primary">Sign Up</Button>
-                                        <Button className={classes.toggle} fullWidth onClick={toggleSignIn} >Already Have a Accout</Button>  
+                                        <Button className={classes.sign_button} type='submit' align='center'  variant='contained' color="primary">Sign Up</Button>
+                                        <Button className={classes.toggle}  onClick={toggleSignIn} >Already Have a Accout</Button>  
                                     </>
                                 )
                     
