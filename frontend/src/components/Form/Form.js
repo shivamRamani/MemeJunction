@@ -1,6 +1,5 @@
 import { TextField, Button, Paper, Typography, ButtonGroup } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import FileBase from "react-file-base64";
 import { store } from "../../app/store";
 import {useDispatch,useSelector } from "react-redux"
 import {createPost,updateCurrPost,selectCurrId} from "../../actions/posts"
@@ -8,25 +7,33 @@ import useStyles from './styles'
 // import { fetchPosts} from "../../api";
 
 
+
 function Form() {
     const classes=useStyles();
     let currentId =useSelector(state=>state.currentId);
     const posts=useSelector(state=>state.posts);
+    const [imgName,setImgname]=useState('Chose a Image');    
     const postToBeUpdated = currentId ? posts.find((p)=>p._id===currentId): null;
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const dispatch=useDispatch();
     const [postData, setPostData] = useState({
         name: "",
         caption: "",
         selectedFile: "",
     });
 
-    const user = JSON.parse(localStorage.getItem('profile'));
 
-    const dispatch=useDispatch();
 
     useEffect(()=>{
         if(postToBeUpdated) setPostData(postToBeUpdated)
     },[postToBeUpdated])
 
+    const getBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    }); 
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -38,9 +45,16 @@ function Form() {
         }
         clearForm();
     };
+
+    const uploadPhoto = async (e)=>{
+        const base64 = await getBase64(e.target.files[0]);
+        // console.log(e.target.files[0]);
+        setImgname(e.target.files[0].name);
+        setPostData({ ...postData, selectedFile: base64 })
+
+    }
     
     const clearForm = ()=>{
-        // event.preventDefault();
         dispatch(selectCurrId(null));
         setPostData({
             name: "",
@@ -48,6 +62,8 @@ function Form() {
             selectedFile: "",
         })
     }
+
+
 
     if(!user){
 
@@ -65,7 +81,7 @@ function Form() {
     return (
         <Paper color="#f50057">
             <form className={classes.form} autoComplete="off" noValidate onSubmit={handleSubmit}>
-                <Typography  align="center"  variant="h4">{!currentId? 'Creat Meme':'Edit Meme'}</Typography>
+                <Typography  align="center"  variant="h4">{!currentId? 'Create Meme':'Edit Meme'}</Typography>
                 <TextField
                     className={classes.textField}
                     variant="filled"
@@ -93,19 +109,8 @@ function Form() {
                     }
                 ></TextField>
                 <div >
-                    <FileBase
-                        className={classes.filebase}
-                        type="file"
-                        name='file'
-                        id='file'
-                        multiple={false}
-                        // name = {postData.selectedFile}
-                        onDone={({ base64 }) =>
-                            setPostData({ ...postData, selectedFile: base64 })
-                        }
-                    />
-                    {/* <input type="file" name="file" id="file" onSubmit={()=>setPostData({ ...postData, selectedFile: base64 })}/>
-                    <label for="file">Choose a file</label> */}
+                    <input style={{display:'none'}} type="file" name="file" id="file" onChange={uploadPhoto}/>
+                    <label htmlFor="file">{imgName}</label>
                 </div>
                 <ButtonGroup className={classes.buttons} fullWidth>
                     <Button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>

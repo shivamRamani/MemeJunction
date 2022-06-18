@@ -16,7 +16,11 @@ const UserSchema = new mongoose.Schema({
     },
     id:{
         type: String,
+    },
+    avatar: {
+        type: Object
     }
+
 })
 
 export const User = mongoose.model('User',UserSchema);

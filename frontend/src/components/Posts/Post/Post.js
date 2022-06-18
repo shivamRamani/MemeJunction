@@ -44,11 +44,6 @@ function Post(props) {
         dispatch(likePost(_id));
  
     };
-    if(user){
-        console.log(user.result._id);
-        console.log(creatorId);
-
-    }
     
     let authorized = (user && user.result._id==creatorId);
     console.log(authorized);

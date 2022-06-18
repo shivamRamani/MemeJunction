@@ -1,46 +1,77 @@
-import React,{useState} from "react";
-import { Avatar,Button,Paper,Grid,Container,Typography} from "@material-ui/core";
+import React,{useEffect, useState} from "react";
+import {Button,Paper,Grid,Container,Typography} from "@material-ui/core";
+import {generateRandomAvatar} from '../../avatar'
+import Avatar from 'avataaars';
 import Input from './Input'
 import { useDispatch } from "react-redux";
 import {signin,signup} from '../../actions/auth'
 import {useNavigate} from 'react-router-dom'
 import useStyles from './styles'
+import  Avatarimg  from "./avatar";
+
+
 
 const Auth = () => {
     const classes=useStyles();
-    const initialState={firstName: '',lastName: '',email: '',password: '',confirmPassword: ''};
+    const initialState={firstName: '',lastName: '',email: '',password: '',confirmPassword: '',avatar: {}};
     const [isSignin,setIsSingin]=useState(true);
     const [formData,setFormData]=useState(initialState);
     const dispatch=useDispatch();
     const navigate=useNavigate();
+    const [avatar,setAvatar]=useState({});
+
+    
     
     const handleSubmit =(event)=>{
         event.preventDefault();
-        
+        console.log(JSON.stringify(avatar));
+        const va={...formData,avatar: avatar};
+        // setFormData({...formData,avatar: avatar});
+        console.log(va);
+        setFormData(va);
+        console.log(formData);
         if(isSignin){
             dispatch(signin(formData,navigate));
         }
         else {
-            dispatch(signup(formData,navigate));
+            dispatch(signup(va,navigate));
             
         }
 
-        console.log(formData);
     }
     const handleChange =(event) =>{
         setFormData({...formData, [event.target.name]: event.target.value});
     }
-
+    const [com,setCom]=useState();
     const toggleSignIn =() =>{
         setIsSingin((previousState) => !previousState);
     }
+
+    
+    const handleAvatar=()=>{
+       setAvatar(generateRandomAvatar())
+    }
+    
 
     return (
         <>
             <Container className={classes.main}  maxWidth='sm'>
                 <Paper className={classes.paper} >
-                    <Avatar >
-                    </Avatar >
+                    {
+                        !isSignin &&(
+                            <>  
+                                <Avatar 
+                                    style={{ width: '70px', height: '70px' }}
+                                    avatarStyle='Circle'
+                                    {...avatar}
+                                />
+                                <Button onClick={handleAvatar}>Random</Button>
+                            </>
+                        )
+                    }
+                    
+                    
+                    
                     <Typography align="center" variant="h6">{isSignin ? `Sign In` :`Sign Up`}</Typography>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={5}>

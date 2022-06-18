@@ -20,7 +20,8 @@ export default makeStyles(()=>{
             backgroundColor: 'white',
             boxShadow: '3px 3px black',
             border: '2px solid black',
-            borderRadius: '6px 0px 0px 6px'
+            borderRadius: '6px 0px 0px 6px',
+            
         },
         buttons: {
             margin: "0px 8%",
@@ -30,7 +31,8 @@ export default makeStyles(()=>{
             border: '2px solid black',
             borderRadius: '5px',
         },
-        filebase: {
+        file_input: {
+            
         }
 
     }
