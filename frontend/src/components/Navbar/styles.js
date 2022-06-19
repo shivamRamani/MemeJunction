@@ -59,11 +59,14 @@ export default makeStyles(()=>{
 
         },
         avatar:{
-            marginRight: '6px',
-            boxShadow: '3px 3px black',
+            height: '55px',
+            width: '55px',
+            marginRight: '3px',
+            // boxShadow: '3px 3px black',
             "@media (max-width: 706px)": {
-                height: '30px',
-                width: '30px',
+                marginRight: '0px',
+                height: '40px',
+                width: '40px',
               }
         },
         button: {

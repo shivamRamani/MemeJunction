@@ -65,6 +65,30 @@ export default makeStyles(()=>{
                 fontSize: 'xx-small'
             }
 
+        },
+        random: {
+
+            width: '60%',
+            margin: '2px 20%',
+            boxShadow: '2px 2px black',
+            border: '3px solid black',
+            borderRadius: '6px',
+            "@media (max-width: 572px)": {
+                
+                fontSize: '2vw',
+                marginBottom: '4px'
+            }
+
+
+        },
+        avatar: {
+            height :'65px',
+            width: '65px',
+
+            "@media (max-width: 572px)":{
+                height: '50px',
+                width: '50px',
+            }
         }
 
         

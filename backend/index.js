@@ -1,3 +1,7 @@
+
+import { config } from 'dotenv';
+config();
+
 import express from 'express';
 import mongoose from 'mongoose';
 import { Post } from './Models/Post.js';
@@ -6,6 +10,8 @@ import userRoutes from './routes/users.js';
 import { auth } from './middleware/auth.js';
 import { User } from './Models/User.js';
 import cors from 'cors'
+
+
 
 // const cors = require("cors")
 const app = express();

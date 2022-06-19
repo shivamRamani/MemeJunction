@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import {signin,signup} from '../../actions/auth'
 import {useNavigate} from 'react-router-dom'
 import useStyles from './styles'
-import  Avatarimg  from "./avatar";
+
 
 
 
@@ -24,17 +24,12 @@ const Auth = () => {
     
     const handleSubmit =(event)=>{
         event.preventDefault();
-        console.log(JSON.stringify(avatar));
-        const va={...formData,avatar: avatar};
-        // setFormData({...formData,avatar: avatar});
-        console.log(va);
-        setFormData(va);
-        console.log(formData);
+        
         if(isSignin){
             dispatch(signin(formData,navigate));
         }
         else {
-            dispatch(signup(va,navigate));
+            dispatch(signup({...formData,avatar: avatar},navigate));
             
         }
 
@@ -57,22 +52,22 @@ const Auth = () => {
         <>
             <Container className={classes.main}  maxWidth='sm'>
                 <Paper className={classes.paper} >
+                    <Typography align="center" variant="h5">{isSignin ? `Sign In` :`Sign Up`}</Typography>
                     {
                         !isSignin &&(
                             <>  
                                 <Avatar 
-                                    style={{ width: '70px', height: '70px' }}
+                                    className={classes.avatar}
                                     avatarStyle='Circle'
                                     {...avatar}
                                 />
-                                <Button onClick={handleAvatar}>Random</Button>
+                                <Button className={classes.random} onClick={handleAvatar} variant='outlined'>Choose Avatar</Button>
                             </>
                         )
                     }
                     
+                        
                     
-                    
-                    <Typography align="center" variant="h6">{isSignin ? `Sign In` :`Sign Up`}</Typography>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={5}>
                             {

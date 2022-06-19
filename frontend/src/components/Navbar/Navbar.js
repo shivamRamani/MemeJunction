@@ -2,10 +2,10 @@ import React, { useEffect, useState} from "react";
 import useStyles from "./styles"
 import { useDispatch } from "react-redux";
 import { Link,useNavigate,useLocation} from "react-router-dom";
-import {AppBar, Toolbar, Typography,Button,Avatar} from '@material-ui/core'
+import {AppBar, Toolbar, Typography,Button} from '@material-ui/core'
 import logo from '../../images/MemeLogo.png'
 import { getPosts } from "../../actions/posts";
-import { color } from "@mui/system";
+import Avatar from 'avataaars'
 
 function Navbar(){
     const classes=useStyles();
@@ -14,11 +14,11 @@ function Navbar(){
     const dispatch=useDispatch();
     const navigate= useNavigate();
     useEffect(()=>{
-        // if(user){
+        
             const token = user && user.token;
-            // console.log(localStorage.getItem('profile'));
+            
             setUser(JSON.parse(localStorage.getItem('profile')));
-        // }
+       
     },[location])
 
     const logout=()=>{
@@ -27,7 +27,7 @@ function Navbar(){
         navigate('/')
         setUser(null);
     }
-    // console.log('USer' + JSON.stringify(user));
+    console.log('USer' + JSON.stringify(user));
     return (
         <>
         <AppBar  className={classes.appBar} color="inherit">
@@ -41,7 +41,10 @@ function Navbar(){
                     ?
                     (   
                         <div className={classes.user}>
-                            <Avatar className={classes.avatar}/>
+                            <Avatar className={classes.avatar}
+                                avatarStyle='Circle'
+                                {...user.result.avatar}
+                            />
                             <Typography className={classes.name} varient='h5'>{user.result.name}</Typography>
                             <Button className={classes.button} size="small" variant='contained' color='secondary' onClick={logout}>Log out</Button>
                         </div>

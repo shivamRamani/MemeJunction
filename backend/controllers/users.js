@@ -7,8 +7,9 @@ import jwt from 'jsonwebtoken';
 
 
 export const signup = async (req,res) =>{
-    console.log(req.body);
-    const {email,password,confirmPassword,firstName,lastName} =req.body; 
+    // console.log(req.body);
+    const {email,password,confirmPassword,firstName,lastName,avatar} =req.body; 
+    // console.log("SECRET_ket "+ process.env.SECRET_KEY);
 
     try{
         const err=validationResult(req);
@@ -27,12 +28,12 @@ export const signup = async (req,res) =>{
         if(password!=confirmPassword) return res.status(400).json({massage: "Passwords don't match"});
 
         const hashedPassword = await bcrypt.hash(password,10);
-        const newUser= new User({email,name: `${firstName} ${lastName}`,password: hashedPassword});
+        const newUser= new User({email,name: `${firstName} ${lastName}`,password: hashedPassword,avatar});
 
         await newUser.save();
-
-        const token = jwt.sign({email: newUser.email, id: newUser._id},'test',{expiresIn: "2h"});
-        
+        // console.log(JSON.stringify(newUser));
+        const token = jwt.sign({email: newUser.email, id: newUser._id},process.env.SECRET_KEY,{expiresIn: "2h"});
+        // console.log(token);
         res.status(200).json({result: newUser,token});
 
     }
