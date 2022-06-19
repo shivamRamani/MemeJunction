@@ -56,13 +56,12 @@ export default makeStyles(()=>{
             justifyContent: 'space-between',
             alignItems: 'center',
 
-
         },
         avatar:{
             height: '55px',
             width: '55px',
             marginRight: '3px',
-            // boxShadow: '3px 3px black',
+
             "@media (max-width: 706px)": {
                 marginRight: '0px',
                 height: '40px',
@@ -81,7 +80,9 @@ export default makeStyles(()=>{
         name: {
             fontFamily: 'Kdam Thmor Pro',
             paddingLeft:  '5px',
-
+            maxWidth: '120px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
             "@media (max-width: 706px)": {
                 fontSize: '0.8125rem',
               }

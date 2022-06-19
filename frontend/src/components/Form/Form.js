@@ -12,7 +12,7 @@ function Form() {
     const classes=useStyles();
     let currentId =useSelector(state=>state.currentId);
     const posts=useSelector(state=>state.posts);
-    const [imgName,setImgname]=useState('Chose a Image');    
+    const [imgName,setImgname]=useState('Choose a Image');    
     const postToBeUpdated = currentId ? posts.find((p)=>p._id===currentId): null;
     const user = JSON.parse(localStorage.getItem('profile'));
     const dispatch=useDispatch();
@@ -22,6 +22,11 @@ function Form() {
         selectedFile: "",
     });
 
+    useEffect(()=>{
+        if(user){
+             setPostData({...postData,name: user.result.name})
+        }
+    },[])
 
 
     useEffect(()=>{
@@ -56,6 +61,7 @@ function Form() {
     
     const clearForm = ()=>{
         dispatch(selectCurrId(null));
+        setImgname("Choose a Image")
         setPostData({
             name: "",
             caption: "",
@@ -76,13 +82,14 @@ function Form() {
         )
 
     }
+   
     
 
     return (
         <Paper color="#f50057">
             <form className={classes.form} autoComplete="off" noValidate onSubmit={handleSubmit}>
                 <Typography  align="center"  variant="h4">{!currentId? 'Create Meme':'Edit Meme'}</Typography>
-                <TextField
+                {/* <TextField
                     className={classes.textField}
                     variant="filled"
                     label="Name"
@@ -94,12 +101,20 @@ function Form() {
                             name: event.target.value,
                         })
                     }
-                ></TextField>
-                <TextField
+                ></TextField> */}
+                <div className={classes.file_input}>
+                    <input  style={{
+                        position: 'absolute',
+                        height: '50px',
+                        width: '100%',
+                        opacity: '0',
+                        cursor: 'pointer'}} type="file" name="file" id="file" onChange={uploadPhoto}/>
+                    <label className={classes.file_input_text} htmlFor="file">{imgName}</label>
+                </div>
+                <input
                     className={classes.textField}
-                    variant="filled"
-                    label="Caption"
-                    fullWidth
+                    // variant="filled"
+                    placeholder='Caption'
                     value={postData.caption}
                     onChange={(event) =>
                         setPostData({
@@ -107,11 +122,7 @@ function Form() {
                             caption: event.target.value,
                         })
                     }
-                ></TextField>
-                <div >
-                    <input style={{display:'none'}} type="file" name="file" id="file" onChange={uploadPhoto}/>
-                    <label htmlFor="file">{imgName}</label>
-                </div>
+                ></input>
                 <ButtonGroup className={classes.buttons} fullWidth>
                     <Button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                     <Button onClick={clearForm} variant="contained" color="secondary" size="large" fullWidth>Clear</Button>
