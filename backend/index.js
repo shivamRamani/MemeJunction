@@ -11,9 +11,6 @@ import { auth } from './middleware/auth.js';
 import { User } from './Models/User.js';
 import cors from 'cors'
 
-// const CONNECTION_URL='mongodb+srv://shivamramani:shivamra40..@cluster0.cacse.mongodb.net/?retryWrites=true&w=majority'
-
-// const cors = require("cors")
 const app = express();
 const PORT= process.env.PORT || 5000;
 app.use(cors())
