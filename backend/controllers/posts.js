@@ -5,7 +5,6 @@ export const getPosts= async (req,res)=>{
     
     try {
         let allPosts =  await Post.find({});
-        console.log('H/ello');
 
         res.status(200).json(allPosts);
 

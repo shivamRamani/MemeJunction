@@ -11,7 +11,7 @@ import { auth } from './middleware/auth.js';
 import { User } from './Models/User.js';
 import cors from 'cors'
 
-
+// const CONNECTION_URL='mongodb+srv://shivamramani:shivamra40..@cluster0.cacse.mongodb.net/?retryWrites=true&w=majority'
 
 // const cors = require("cors")
 const app = express();
@@ -42,7 +42,7 @@ app.get('/users',auth,async (req,res)=>{
 
 
 mongoose
-    .connect("mongodb://localhost:27017/meme", {
+    .connect(process.env.CONNECTION_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -59,10 +59,3 @@ mongoose
     });
     
     app.listen(PORT,()=>console.log(`listing to ${PORT}`));
-// const test1 = new Post({name: 'joker',likes: 6});
-// // console.log(test1);
-// test1.save(()=>console.log(test1));
-// Post.find({}).then(data=>console.log(data));
-// const count = await Post.count({name : 'joker'});
-// console.log(count);
-// Post.findOneAndDelete({name: 'joker'});
