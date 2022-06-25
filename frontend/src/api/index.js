@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:5000";
+const url = "https://meme-junction.herokuapp.com";
 
 const API = axios.create({baseURL: url})
 
