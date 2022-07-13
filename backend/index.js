@@ -35,6 +35,7 @@ app.get('/users',auth,async (req,res)=>{
     res.json(await User.find({_id: req.userId}));
 })
 
+console.log("Database_URL", process.env.CONNECTION_URL);
 
 
 
@@ -53,6 +54,7 @@ mongoose
 
     app.get('/',(req,res)=>{
         res.send('Home');
+
     });
     
     app.listen(PORT,()=>console.log(`listing to ${PORT}`));
