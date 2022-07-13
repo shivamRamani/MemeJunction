@@ -57,4 +57,4 @@ mongoose
 
     });
     
-    app.listen(PORT,()=>console.log(`listing to ${PORT}`));
+    app.listen(PORT,()=>console.log(`listing to ${PORT}`,process.env.CONNECTION_URL));
