@@ -15,8 +15,6 @@ function Navbar(){
     const navigate= useNavigate();
     useEffect(()=>{
         
-            const token = user && user.token;
-            
             setUser(JSON.parse(localStorage.getItem('profile')));
        
     },[location])

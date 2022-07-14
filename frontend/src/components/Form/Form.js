@@ -1,11 +1,8 @@
-import { TextField, Button, Paper, Typography, ButtonGroup } from "@material-ui/core";
+import {  Button, Paper, Typography, ButtonGroup } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { store } from "../../app/store";
 import {useDispatch,useSelector } from "react-redux"
 import {createPost,updateCurrPost,selectCurrId} from "../../actions/posts"
 import useStyles from './styles'
-// import { fetchPosts} from "../../api";
-
 
 
 function Form() {

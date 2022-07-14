@@ -1,5 +1,5 @@
-import React,{useEffect, useState} from "react";
-import {Button,Paper,Grid,Container,Typography} from "@material-ui/core";
+import React,{ useState} from "react";
+import {Paper,Grid,Typography,Button,Container} from "@material-ui/core";
 import {generateRandomAvatar} from '../../avatar'
 import Avatar from 'avataaars';
 import Input from './Input'
@@ -8,7 +8,7 @@ import {signin,signup} from '../../actions/auth'
 import {useNavigate} from 'react-router-dom'
 import useStyles from './styles'
 
-
+// import { Button,Container } from '@mui/material';
 
 
 const Auth = () => {
@@ -37,7 +37,6 @@ const Auth = () => {
     const handleChange =(event) =>{
         setFormData({...formData, [event.target.name]: event.target.value});
     }
-    const [com,setCom]=useState();
     const toggleSignIn =() =>{
         setIsSingin((previousState) => !previousState);
     }
@@ -88,7 +87,7 @@ const Auth = () => {
                             {
                                 isSignin ? (
                                     <>
-                                        <Button className={classes.sign_button} type='submit' variant='contained' color="primary">Sign In</Button>
+                                        <Button type='submit' variant='contained' color="primary" className={classes.sign_button}>Sign In</Button>
                                         <Button className={classes.toggle} fullWidth onClick={toggleSignIn} >Create a New Accout</Button>
                                     </>
                                 ) : (

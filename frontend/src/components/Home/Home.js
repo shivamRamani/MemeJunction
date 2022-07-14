@@ -1,14 +1,12 @@
 import React,{useEffect} from 'react'
-import {Container ,AppBar, Typography, Grow,Grid} from '@material-ui/core'
+import {Container, Grow,Grid} from '@material-ui/core'
 import Form from "../Form/Form";
 import Posts from "../Posts/Posts";
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {getPosts } from '../../actions/posts'
 
  function Home() {
-    // const classes=useStyles();
     const dispatch=useDispatch();
-    const currentId= useSelector(state=>state.currentId)
     const user = localStorage.getItem('profile');
     useEffect(() => {
         dispatch(getPosts());

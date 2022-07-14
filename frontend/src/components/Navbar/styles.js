@@ -11,7 +11,6 @@ export default makeStyles(()=>{
             justifyContent: 'space-between',
             alignItems: 'center',
             backgroundColor: '#80ffdb',
-            position: '-webkit-sticky',
             position: 'sticky',
             top: '0',
             boxShadow: '0px 3px  black',

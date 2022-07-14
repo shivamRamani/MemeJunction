@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React from "react";
 import useStyles from './styles'
 import {
     Card,
@@ -10,15 +10,12 @@ import {
 } from "@material-ui/core";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import EditIcon from "@mui/icons-material/Edit";
-import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
     selectCurrId,
     deletePost,
     likePost,
-    getPosts,
 } from "../../../actions/posts";
 
 function Post(props) {
@@ -28,14 +25,6 @@ function Post(props) {
     let { _id, name, caption, selectedFile,likes,creatorId} = props.post;
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
-    // const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
-
-    // useEffect(() => {
-    //     setUser(JSON.parse(localStorage.getItem('profile')));
-    // }, [JSON.parse(localStorage.getItem('profile'))]);
-    
-
-    // const [authorized,setAuth] = useState((user && user.result._id==creatorId));
 
     const selectId = () => {
         dispatch(selectCurrId(_id));
@@ -45,7 +34,7 @@ function Post(props) {
  
     };
     
-    let authorized = (user && user.result._id==creatorId);
+    let authorized = (user && user.result._id===creatorId);
     console.log(authorized);
     
     return (
