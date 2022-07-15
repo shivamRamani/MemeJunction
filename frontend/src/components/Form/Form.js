@@ -73,7 +73,7 @@ function Form() {
         return (
             <Paper className={classes.form}>
                 <Typography varient='h3' align='center'>
-                    Please loging to create and like posts
+                    Please log in to create and like posts
                 </Typography>
             </Paper>
         )
