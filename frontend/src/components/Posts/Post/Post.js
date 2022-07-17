@@ -7,7 +7,7 @@ import {
     CardMedia,
     Button,
     Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -39,7 +39,11 @@ function Post(props) {
     
     return (
         <>
-            <Card className={classes.card}>
+            <Card className={classes.card} sx={{margin: '30px',
+            borderRadius: '10px',
+            
+            border: '3px solid black',
+            boxShadow: '5px 8px black'}}>
                 <CardContent className={classes.content}>
                     <Typography gutterBottom variant="h5" component="div">
                         {name}
@@ -49,15 +53,20 @@ function Post(props) {
                     </Typography>
                 </CardContent>
                 <CardMedia
-                    className={classes.image}
+                    // className={classes.image}
+                    
                     component="img"
                     alt="MemeImage"
                     // height="250 "
                     image={selectedFile}
+                    sx={{margin: '4px',
+                    objectFit: 'contain',
+                    maxHeight:'400px',
+                    display: 'inline'}}
                 />
                 
                 <CardActions className={classes.actions}>
-                    <Button size="small" onClick={onLikeClick}>
+                    <Button size="small" onClick={onLikeClick} sx={{color: 'black'}}>
                         <ThumbUpIcon fontSize="small">' '</ThumbUpIcon>
                         {likes.length ? `${likes.length} ${likes.length===1? 'Like' : 'Likes'}` : ' '}
                         {}
@@ -65,15 +74,16 @@ function Post(props) {
                     {
                         authorized ? (
                             <>
-                                <Button size="small" onClick={selectId}>
+                                <Button size="small" onClick={selectId} sx={{color: 'black'}}>
                                     <EditIcon fontSize="small">' '</EditIcon>
                                      Edit
                                 </Button>
                                 <Button
+                                    sx={{color: 'black'}}
                                     size="small"
                                     onClick={() => dispatch(deletePost(_id))}
                                         >
-                                    <DeleteIcon fontSize="small">' '</DeleteIcon>
+                                    <DeleteIcon fontSize="small" >' '</DeleteIcon>
                                      Delete
                                 </Button>
                             </>

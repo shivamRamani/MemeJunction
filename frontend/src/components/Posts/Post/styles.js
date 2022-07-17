@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export default makeStyles(()=>{
     return {
         card: {
+            
             margin: '30px',
             borderRadius: '10px',
             border: '3px solid black',

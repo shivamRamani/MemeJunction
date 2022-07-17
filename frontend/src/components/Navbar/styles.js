@@ -1,9 +1,8 @@
-import {  makeStyles } from "@material-ui/core";
 
-export default makeStyles(()=>{
-    return {
+export const classes={
         appBar:{
             // borderRadius: '5px',
+             
             margin: '0px 0px 20px 0px',
             width: '100%',
             display: 'flex',
@@ -12,20 +11,23 @@ export default makeStyles(()=>{
             alignItems: 'center',
             backgroundColor: '#80ffdb',
             position: 'sticky',
+            // position: '-webkit-sticky',
+
+            // 
             top: '0',
             boxShadow: '0px 3px  black',
-            
-            
 
         },
         logo :{
             
+
             marginLeft:'15px',
             marginRight:'15px',
             height: '60px',
             display: 'none'
         },
         title:{
+
             color: 'black',
             fontSize: 'min(6vw,55px)',
             fontWeight: '400',
@@ -33,11 +35,14 @@ export default makeStyles(()=>{
             maxWidth: '300px',
             textShadow: '3px 3px #ACB5B3',
             fontFamily: 'Kdam Thmor Pro',
-            "@media (max-width: 706px)": {
+            '@media (max-width: 706px)': {
                 fontSize: '6vw',
+
               }
+
         },
         toolbar:{
+
             margin: '8px',
             flex: '2',
             flexDirection: 'row',
@@ -48,6 +53,7 @@ export default makeStyles(()=>{
 
         },
         user:{
+
             width: '100%',
             margin: '0px',
             display: 'flex',
@@ -57,32 +63,32 @@ export default makeStyles(()=>{
 
         },
         avatar:{
+
             height: '55px',
             width: '55px',
             marginRight: '3px',
 
-            "@media (max-width: 706px)": {
-                marginRight: '0px',
-                height: '40px',
-                width: '40px',
-              }
+           
         },
         button: {
+
             border: '2px dashed black',
             boxShadow: '3px 3px black',
             display: 'ruby',
-            "@media (max-width: 706px)": {
-                fontSize: '0.6em'
+            '@media (max-width: 706px)': {
+                fontSize: '0.6em',
+
               }
 
         },
         name: {
+
             fontFamily: 'Kdam Thmor Pro',
             paddingLeft:  '5px',
             maxWidth: '120px',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-            "@media (max-width: 706px)": {
+            '@media (max-width: 706px)': {
                 fontSize: '0.8125rem',
               }
         },
@@ -93,10 +99,9 @@ export default makeStyles(()=>{
             boxShadow: '3px 3px black',
             display: 'ruby',
 
-            "@media (max-width: 706px)": {
+            '@media (max-width: 706px)': {
                 padding: '4px 10px',
                 fontSize: '0.8125rem',
               }
         }
     }
-})
