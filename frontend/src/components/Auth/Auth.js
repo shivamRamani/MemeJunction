@@ -8,8 +8,6 @@ import {signin,signup} from '../../actions/auth'
 import {useNavigate} from 'react-router-dom'
 import useStyles from './styles'
 
-// import { Button,Container } from '@mui/material';
-
 
 const Auth = () => {
     const classes=useStyles();
@@ -19,12 +17,8 @@ const Auth = () => {
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const [avatar,setAvatar]=useState({});
-
-    
-    
     const handleSubmit =(event)=>{
         event.preventDefault();
-        
         if(isSignin){
             dispatch(signin(formData,navigate));
         }

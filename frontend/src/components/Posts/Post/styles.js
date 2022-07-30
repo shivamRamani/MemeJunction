@@ -4,10 +4,16 @@ export default makeStyles(()=>{
     return {
         card: {
             
-            margin: '30px',
+            margin: '20px',
             borderRadius: '10px',
             border: '3px solid black',
-            boxShadow: '5px 8px black'
+            boxShadow: '5px 8px black',
+
+            "@media (max-width: 572px)": {
+                margin: '10px',
+                // display: 'none'
+            },
+
         },
         image:{
             margin: '4px',

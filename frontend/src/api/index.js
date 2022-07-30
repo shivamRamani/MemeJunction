@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const url = "https://meme-junction.herokuapp.com";
-
 const API = axios.create({baseURL: url})
 
 API.interceptors.request.use((req)=>{

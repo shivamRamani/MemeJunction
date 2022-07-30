@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home"
 import { BrowserRouter , Routes, Route } from "react-router-dom";
 import Auth from "./components/Auth/Auth";
-
+import  Toast  from "./components/Toast/Toast";
 function App() {
   
   return (
@@ -15,8 +15,10 @@ function App() {
               <Route exact path='/' element={<Home />} />
               <Route exact path='/auth' element={<Auth />} />
             </Routes>
+            <Toast/>
         </Container>
     </BrowserRouter>
+    
   );
 }
 

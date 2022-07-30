@@ -39,11 +39,16 @@ function Post(props) {
     
     return (
         <>
-            <Card className={classes.card} sx={{margin: '30px',
+            <Card sx={{margin: "30px",
             borderRadius: '10px',
             
             border: '3px solid black',
-            boxShadow: '5px 8px black'}}>
+            boxShadow: '5px 8px black',
+            '@media (max-width: 572px)' : {
+                margin: '30px -10px'
+              }
+            
+            }}>
                 <CardContent className={classes.content}>
                     <Typography gutterBottom variant="h5" component="div">
                         {name}
